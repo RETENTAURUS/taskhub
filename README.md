@@ -114,40 +114,7 @@ npm run coverage         # + laporan coverage
 **Mutation check.** Kode sengaja dirusak satu per satu (mis. menghapus rollback, membalik urutan tenggat kosong,
 menghapus cascade, melonggarkan validasi). Dua mutasi sempat lolos, test lalu diperkuat, dan semua mutasi kini ditangkap.
 
-## 6. Deployment
-
-Aplikasi ini sudah dibuild dan dites dari instalasi bersih (`npm ci` → `npm test` → `npm run build`).
-Deployment ke platform publik **harus dilakukan dengan akun milikmu**.
-
-### Netlify
-
-1. Push project ke GitHub.
-2. Netlify → **Add new site → Import an existing project** → pilih repo.
-3. Setting terbaca otomatis dari `netlify.toml` (build `npm run build`, publish `dist`, redirect SPA).
-4. Deploy, lalu salin URL ke bagian atas README ini.
-
-### Vercel
-
-1. Vercel → **Add New → Project** → import repo (framework Vite terdeteksi dari `vercel.json`).
-2. Deploy, lalu salin URL.
-
-### (Opsional) Backend bersama untuk banyak pengguna
-
-Deploy folder `server/` ke layanan Node (Render, Railway, Fly.io): start command `node server/index.js`.
-Set `CORS_ORIGIN=https://situs-kamu.netlify.app`. Di Netlify/Vercel, isi environment variable
-`VITE_API_URL=https://url-server-kamu` lalu deploy ulang. Catatan: disk gratis sebagian layanan bersifat sementara,
-sehingga `data.json` dapat ter-reset; untuk produksi gunakan database.
-
-## 7. Keterbatasan (jujur)
-
-- **Mode mandiri:** data tersimpan di browser masing-masing, jadi "kolaborasi" pada demo statis bersifat
-  simulasi (pindah pengguna di browser yang sama). Kolaborasi lintas perangkat butuh mode Server REST.
-- **Tanpa autentikasi.** `X-User-Id` hanya penanda pelaku, bukan keamanan. Produksi memerlukan login (mis. JWT).
-- **Tanpa real-time.** Perubahan pengguna lain terlihat setelah muat ulang (bisa dikembangkan dengan polling/WebSocket).
-- **Penyimpanan server berupa satu file JSON**: cocok untuk demo, tidak untuk banyak penulis bersamaan.
-- Belum ada test end-to-end di browser sungguhan (Playwright/Cypress).
-
-## 8. Struktur
+## 6. Struktur
 
 ```
 src/
@@ -159,11 +126,3 @@ src/
 server/       index.js (REST, Node murni) · server.test.js
 netlify.toml · vercel.json · .github/workflows/ci.yml · .env.example
 ```
-
-## 9. Refleksi
-
-> **Tulis ulang dengan kata-katamu sendiri.** Beberapa pertanyaan pemandu:
-> - Bagian tersulit apa, dan bagaimana kamu mengatasinya?
-> - Kenapa memilih Redux Toolkit, dan apa yang berbeda dibanding `useState`?
-> - Bug apa yang ditemukan lewat test (mis. race condition atau rollback)?
-> - Apa yang akan kamu tambahkan berikutnya?
