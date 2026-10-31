@@ -6,8 +6,8 @@ mencatat siapa mengubah apa.
 
 **Stack:** React 19 · Redux Toolkit · React Router · Vite · Vitest + Testing Library · Node (server REST opsional)
 
-> **Live demo:** _isi URL Netlify/Vercel-mu di sini setelah deploy_
-> **Repository:** _isi URL GitHub-mu di sini_
+> **Live demo:*taskhub3.netlify.app*
+> **Repository:*https://github.com/RETENTAURUS*
 
 ---
 
